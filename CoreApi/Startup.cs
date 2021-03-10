@@ -1,5 +1,8 @@
+using CoreApi.Models;
+using CoreApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,7 +22,10 @@ namespace CoreApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddMvc();
+            services.AddControllers();
+            services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)))
+        .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddScoped<IBookService, BookService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
