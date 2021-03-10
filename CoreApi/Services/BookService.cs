@@ -21,12 +21,6 @@ namespace CoreApi.Services
                 RetailPrice = 44
             }
         };
-        public Book GetById(int id)
-        {
-            var book = books.Find(x => x.Id == id);
-            if(book == null)
-                throw new NotImplementedException();
-            return book;
-        }
+        public Book GetById(int id) => books.Find(x => x.Id == id);
     }
 }

@@ -16,7 +16,9 @@ namespace CoreApi.Controllers
         [HttpGet("{Id}")]
         public ActionResult Get(int Id)
         {
-            return Ok(_IbookService.GetById(Id));
+            var book = _IbookService.GetById(Id);
+            if (book == null) return NotFound();
+            return Ok(book);
         }
     }
 }
